@@ -1,0 +1,9 @@
+spring:
+  mvc:
+    converters:
+      preferred-json-mapper: gson
+  gson:
+    date-format: yyyy-MM-dd'T'HH:mm:ss.SSSZ
+    pretty-printing: true
+  jackson:
+    default-property-inclusion: non_null
