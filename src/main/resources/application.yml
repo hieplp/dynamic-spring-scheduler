@@ -7,3 +7,5 @@ spring:
     pretty-printing: true
   jackson:
     default-property-inclusion: non_null
+server:
+  shutdown: graceful

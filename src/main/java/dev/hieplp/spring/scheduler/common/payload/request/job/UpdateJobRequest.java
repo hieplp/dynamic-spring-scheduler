@@ -1,11 +1,9 @@
 package dev.hieplp.spring.scheduler.common.payload.request.job;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
-public class CreateJobRequest {
+public class UpdateJobRequest {
     private String name;
     private String group;
     private String description;
