@@ -104,7 +104,7 @@ public class JobServiceImpl implements JobService {
                 }
             }
             return list;
-        } catch (Exception e) {
+        } catch (SchedulerException e) {
             throw new UnknownException(e.getMessage());
         }
     }
