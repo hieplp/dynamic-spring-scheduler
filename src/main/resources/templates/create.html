@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Create Job</title>
+  <script>
+    // const user = {
+    //   "name": "string",
+    //   "group": "string",
+    //   "description": "string",
+    //   "cronExpression": "0 0 12 * * ?",
+    //   "type": 0
+    // }
+  </script>
+</head>
+
+<body>
+
+<div class="w-screen h-screen flex bg-slate-200 py-20">
+  <div class="container m-auto bg-white rounded-md px-7 py-10">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+      Create Job
+    </h1>
+
+    <form class="grid grid-cols-2 gap-x-3 gap-y-5">
+
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900" for="name">Job Name:</label>
+        <input
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          id="name"
+          placeholder="Enter job name"
+          required type="name"/>
+      </div>
+
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900" for="name">
+          Job Group:
+        </label>
+        <input
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          id="group" name="group"
+          placeholder="Enter job group"
+          required type="text"/>
+      </div>
+
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900" for="cronExpression">
+          Cron Expression:
+        </label>
+        <input
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          id="cronExpression" name="cronExpression"
+          placeholder="Enter cron expression"
+          required type="text"/>
+      </div>
+
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900" for="type">
+          Job Type:
+        </label>
+        <input
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          id="type" name="type"
+          placeholder="Enter job type"
+          required type="text"/>
+      </div>
+
+      <div class="col-span-2">
+        <label class="block mb-2 text-sm font-medium text-gray-900" for="description">
+          Description:
+        </label>
+        <textarea
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          id="description" name="description" placeholder="Enter job description"
+          required
+          rows="4" type="text"></textarea>
+      </div>
+
+      <div class="col-span-2 flex justify-end">
+        <button
+          class="text-gray-900 bg-gray-300 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mr-3"
+          type="reset">
+          Reset
+        </button>
+
+        <button
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          type="submit">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+</body>
+
+</html>
