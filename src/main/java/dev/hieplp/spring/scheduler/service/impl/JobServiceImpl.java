@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Slf4j
 @Service
@@ -134,6 +135,8 @@ public class JobServiceImpl implements JobService {
                     .cronExpression(((CronTrigger) firstTrigger).getCronExpression())
                     .state(state)
                     .build();
+        } catch (NoSuchElementException e) {
+            return null;
         } catch (SchedulerException e) {
             throw new UnknownException(e.getMessage());
         }

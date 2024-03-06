@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Create Job</title>
+  <title>Update Job</title>
   <script>
   </script>
 </head>
@@ -14,37 +14,44 @@
 <div class="w-screen h-screen flex bg-slate-200 py-20">
   <div class="container m-auto bg-white rounded-md px-7 py-10">
     <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-      Create Job
+      Update Job
     </h1>
 
-    <form
-      action="#"
-      class="grid grid-cols-2 gap-x-3 gap-y-5"
-      method="post"
-      th:action="@{/create}"
-    >
+    <form action="#"
+          class="grid grid-cols-2 gap-x-3 gap-y-5"
+          method="post"
+          th:action="@{/update}">
+
       <div>
-        <label class="block mb-2 text-sm font-medium text-gray-900" for="name">Job Name:</label>
+        <label class="block mb-2 text-sm font-medium text-gray-900">Job Name:</label>
         <input
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          id="name"
+          disabled
+          readonly
+          th:value="${job.name}"
+        />
+        <input
+          hidden
           name="name"
-          placeholder="Enter job name"
-          required
-          type="text"
+          th:value="${job.name}"
         />
       </div>
 
       <div>
-        <label class="block mb-2 text-sm font-medium text-gray-900" for="name">
+        <label class="block mb-2 text-sm font-medium text-gray-900">
           Job Group:
         </label>
         <input
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          id="group" name="group"
-          placeholder="Enter job group"
-          required
+          disabled
+          readonly
+          th:value="${job.group}"
           type="text"
+        />
+        <input
+          hidden
+          name="group"
+          th:value="${job.group}"
         />
       </div>
 
@@ -58,6 +65,7 @@
           name="cronExpression"
           placeholder="Enter cron expression"
           required
+          th:value="${job.cronExpression}"
           type="text"
         />
       </div>
@@ -68,9 +76,11 @@
         </label>
         <select
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          id="type" name="type"
+          id="type"
+          name="type"
           required
           th:each="type : ${types}"
+          th:value="${job.type}"
         >
           <option th:text="${type.clazz.name}" th:value="${type.type}">
           </option>
@@ -88,6 +98,7 @@
           placeholder="Enter job description"
           required
           rows="4"
+          th:text="${job.description}"
           type="text"
         ></textarea>
       </div>
