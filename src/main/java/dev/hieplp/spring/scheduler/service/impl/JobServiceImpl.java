@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -87,7 +88,7 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public JobModel interact(InteractJobRequest request) {
+    public Optional<JobModel> interact(InteractJobRequest request) {
         log.info("Interact job with request: {}", request);
         final var service = interactionFactory.getInstance(request.getType());
         final var jobKey = service.interact(request);
@@ -101,7 +102,7 @@ public class JobServiceImpl implements JobService {
             final var list = new ArrayList<JobModel>();
             for (String groupName : scheduler.getJobGroupNames()) {
                 for (JobKey jobKey : scheduler.getJobKeys(GroupMatcher.jobGroupEquals(groupName))) {
-                    list.add(get(jobKey));
+                    get(jobKey).ifPresent(list::add);
                 }
             }
             return list;
@@ -111,14 +112,14 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public JobModel get(String group, String name) {
+    public Optional<JobModel> get(String group, String name) {
         log.info("Get job with group: {} and name: {}", group, name);
         final var jobKey = JobKey.jobKey(name, group);
         return get(jobKey);
     }
 
     @Override
-    public JobModel get(JobKey jobKey) {
+    public Optional<JobModel> get(JobKey jobKey) {
         try {
             log.info("Get job with jobKey: {}", jobKey);
 
@@ -128,15 +129,15 @@ public class JobServiceImpl implements JobService {
             final var firstTrigger = triggers.getFirst();
             final var state = scheduler.getTriggerState(firstTrigger.getKey());
 
-            return JobModel.builder()
+            return Optional.of(JobModel.builder()
                     .name(jobDetail.getKey().getName())
                     .group(jobDetail.getKey().getGroup())
                     .description(jobDetail.getDescription())
                     .cronExpression(((CronTrigger) firstTrigger).getCronExpression())
                     .state(state)
-                    .build();
+                    .build());
         } catch (NoSuchElementException e) {
-            return null;
+            return Optional.empty();
         } catch (SchedulerException e) {
             throw new UnknownException(e.getMessage());
         }

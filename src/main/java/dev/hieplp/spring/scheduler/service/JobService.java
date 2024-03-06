@@ -9,17 +9,18 @@ import dev.hieplp.spring.scheduler.common.payload.response.job.UpdateJobResponse
 import org.quartz.JobKey;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface JobService {
     CreateJobResponse create(CreateJobRequest request);
 
     UpdateJobResponse update(UpdateJobRequest request);
 
-    JobModel interact(InteractJobRequest request);
+    Optional<JobModel> interact(InteractJobRequest request);
 
     List<JobModel> getAll();
 
-    JobModel get(String group, String name);
+    Optional<JobModel> get(String group, String name);
 
-    JobModel get(JobKey jobKey);
+    Optional<JobModel> get(JobKey jobKey);
 }

@@ -69,7 +69,10 @@ public class IndexController {
         log.info("Update page");
 
         final var jobModel = jobService.get(group, name);
-        map.addAttribute("job", jobModel);
+        if (jobModel.isEmpty()) {
+            return "redirect:/404";
+        }
+        map.addAttribute("job", jobModel.get());
 
         final var types = JobType.values();
         map.addAttribute("types", types);
@@ -97,5 +100,13 @@ public class IndexController {
         jobService.interact(request);
 
         return "redirect:/";
+    }
+
+    // --------------------------------------------------
+    // ------------------- 404 Page ---------------------
+    // --------------------------------------------------
+    @GetMapping("/404")
+    public String notFound() {
+        return "404";
     }
 }
