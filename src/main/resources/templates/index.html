@@ -79,11 +79,6 @@
           </div>
         </td>
 
-        <!--        <td class="px-6 py-4 text-center font-medium whitespace-nowrap"-->
-        <!--            th:class="'px-6 py-4 text-center font-medium whitespace-nowrap ' + ${job.state.name() == 'NORMAL' ? 'text-green-600' : 'text-red-600'}"-->
-        <!--            th:text="${job.state.name()}">-->
-        <!--        </td>-->
-
         <td class="flex items-center px-6 py-4">
           <div class="relative inline-block text-left dropdown">
             <button
@@ -106,8 +101,6 @@
                 <form action="#" method="post" th:action="@{/interact}">
                   <input hidden="hidden" th:name="name" th:value="${job.name}" type="text"/>
                   <input hidden="hidden" th:name="group" th:value="${job.group}" type="text"/>
-                  <!--                  <input hidden="hidden" th:name="type" th:value="${job.state.name() == 'PAUSED' ? 'RESUME' : 'PAUSE'}"-->
-                  <!--                         type="text"/>-->
 
                   <div class="" hidden th:switch="${job.state.name()}">
                     <input hidden th:case="'ERROR'" th:name="type" th:value="RESUME"/>
