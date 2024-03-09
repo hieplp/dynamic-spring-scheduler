@@ -1,5 +1,6 @@
 package dev.hieplp.spring.scheduler.common.enums.file;
 
+import dev.hieplp.spring.scheduler.job.AutowiredJob;
 import dev.hieplp.spring.scheduler.job.SimpleJob;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,11 +12,10 @@ import java.util.Arrays;
 @AllArgsConstructor
 public enum JobType {
     SIMPLE(0, SimpleJob.class),
-    ;
+    AUTOWIRED(1, AutowiredJob.class);
 
     private final Integer type;
     private final Class<? extends Job> clazz;
-
 
     public static JobType valueOf(Integer type) {
         return Arrays.stream(values())

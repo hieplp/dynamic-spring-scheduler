@@ -23,4 +23,6 @@ public interface JobService {
     Optional<JobModel> get(String group, String name);
 
     Optional<JobModel> get(JobKey jobKey);
+
+    void checkCronExpression(String cronExpression);
 }

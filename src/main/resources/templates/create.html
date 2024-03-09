@@ -11,28 +11,44 @@
 
 <body>
 
-<div class="w-screen h-screen flex bg-slate-200 py-20">
+<div class="w-screen h-screen flex flex-col bg-slate-200 py-20">
+
+  <div class="container mx-auto px-5 text-lg">
+    <nav aria-label="Breadcrumb" class="flex">
+      <ol class="inline-flex items-center space-x-1 md:space-x-2">
+        <li class="inline-flex items-center">
+          <a class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600" href="/">
+            Home
+          </a>
+        </li>
+
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg aria-hidden="true" class="w-3 h-3 text-gray-400 mx-1"
+                 fill="none" viewBox="0 0 6 10" xmlns="http://www.w3.org/2000/svg">
+              <path d="m1 9 4-4-4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2"/>
+            </svg>
+            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2">
+                Create
+              </span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+  </div>
+
   <div class="container m-auto bg-white rounded-md px-7 py-10">
     <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
       Create Job
     </h1>
 
-    <form
-      action="#"
-      class="grid grid-cols-2 gap-x-3 gap-y-5"
-      method="post"
-      th:action="@{/create}"
-    >
+    <form action="#" class="grid grid-cols-2 gap-x-3 gap-y-5" method="post" th:action="@{/create}">
       <div>
         <label class="block mb-2 text-sm font-medium text-gray-900" for="name">Job Name:</label>
         <input
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          id="name"
-          name="name"
-          placeholder="Enter job name"
-          required
-          type="text"
-        />
+          id="name" name="name" placeholder="Enter job name" required type="text"/>
       </div>
 
       <div>
@@ -41,11 +57,7 @@
         </label>
         <input
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          id="group" name="group"
-          placeholder="Enter job group"
-          required
-          type="text"
-        />
+          id="group" name="group" placeholder="Enter job group" required type="text"/>
       </div>
 
       <div>
@@ -54,12 +66,7 @@
         </label>
         <input
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          id="cronExpression"
-          name="cronExpression"
-          placeholder="Enter cron expression"
-          required
-          type="text"
-        />
+          id="cronExpression" name="cronExpression" placeholder="Enter cron expression" required type="text"/>
       </div>
 
       <div>
@@ -68,11 +75,8 @@
         </label>
         <select
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          id="type" name="type"
-          required
-          th:each="type : ${types}"
-        >
-          <option th:text="${type.clazz.name}" th:value="${type.type}">
+          id="type" name="type" required>
+          <option th:each="type, typeIndex : ${types}" th:text="${type.clazz.name}" th:value="${type.type}">
           </option>
         </select>
       </div>
@@ -83,27 +87,19 @@
         </label>
         <textarea
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          id="description"
-          name="description"
-          placeholder="Enter job description"
-          required
-          rows="4"
-          type="text"
-        ></textarea>
+          id="description" name="description" placeholder="Enter job description" rows="4" type="text"></textarea>
       </div>
 
       <div class="col-span-2 flex justify-end">
         <button
           class="text-gray-900 bg-gray-300 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mr-3"
-          type="reset"
-        >
+          type="reset">
           Reset
         </button>
 
         <button
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-          type="submit"
-        >
+          type="submit">
           Submit
         </button>
       </div>

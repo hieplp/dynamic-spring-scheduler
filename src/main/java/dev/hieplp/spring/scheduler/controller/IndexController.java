@@ -1,5 +1,6 @@
 package dev.hieplp.spring.scheduler.controller;
 
+import dev.hieplp.spring.scheduler.common.enums.PageEnum;
 import dev.hieplp.spring.scheduler.common.enums.file.JobType;
 import dev.hieplp.spring.scheduler.common.payload.request.job.CreateJobRequest;
 import dev.hieplp.spring.scheduler.common.payload.request.job.InteractJobRequest;
@@ -55,7 +56,7 @@ public class IndexController {
 
         jobService.create(request);
 
-        return "redirect:/";
+        return PageEnum.INDEX.redirect();
     }
 
     // --------------------------------------------------
@@ -86,7 +87,7 @@ public class IndexController {
 
         jobService.update(request);
 
-        return "redirect:/";
+        return PageEnum.INDEX.redirect();
     }
 
     // --------------------------------------------------
@@ -99,7 +100,7 @@ public class IndexController {
 
         jobService.interact(request);
 
-        return "redirect:/";
+        return PageEnum.INDEX.redirect();
     }
 
     // --------------------------------------------------

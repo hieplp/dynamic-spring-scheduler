@@ -2,6 +2,7 @@ package dev.hieplp.spring.scheduler.service.impl;
 
 import dev.hieplp.spring.scheduler.common.enums.file.JobType;
 import dev.hieplp.spring.scheduler.common.exception.DuplicateException;
+import dev.hieplp.spring.scheduler.common.exception.InvalidCronException;
 import dev.hieplp.spring.scheduler.common.exception.UnknownException;
 import dev.hieplp.spring.scheduler.common.model.JobModel;
 import dev.hieplp.spring.scheduler.common.payload.request.job.CreateJobRequest;
@@ -37,6 +38,8 @@ public class JobServiceImpl implements JobService {
         try {
             log.info("Create job with request: {}", request);
 
+            checkCronExpression(request.getCronExpression());
+
             final var jobKey = JobKey.jobKey(request.getName(), request.getGroup());
             if (scheduler.checkExists(jobKey)) {
                 throw new DuplicateException("Job already exists");
@@ -67,6 +70,8 @@ public class JobServiceImpl implements JobService {
     @Override
     public UpdateJobResponse update(UpdateJobRequest request) {
         log.info("Update job with request: {}", request);
+
+        checkCronExpression(request.getCronExpression());
 
         interact(InteractJobRequest.builder()
                 .name(request.getName())
@@ -140,6 +145,16 @@ public class JobServiceImpl implements JobService {
             return Optional.empty();
         } catch (SchedulerException e) {
             throw new UnknownException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void checkCronExpression(String cronExpression) {
+        try {
+            log.info("Check cron expression: {}", cronExpression);
+            CronScheduleBuilder.cronSchedule(cronExpression);
+        } catch (Exception e) {
+            throw new InvalidCronException(e.getMessage());
         }
     }
 }
