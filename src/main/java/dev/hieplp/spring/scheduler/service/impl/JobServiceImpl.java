@@ -1,6 +1,6 @@
 package dev.hieplp.spring.scheduler.service.impl;
 
-import dev.hieplp.spring.scheduler.common.enums.file.JobType;
+import dev.hieplp.spring.scheduler.common.enums.job.JobType;
 import dev.hieplp.spring.scheduler.common.exception.DuplicateException;
 import dev.hieplp.spring.scheduler.common.exception.InvalidCronException;
 import dev.hieplp.spring.scheduler.common.exception.UnknownException;

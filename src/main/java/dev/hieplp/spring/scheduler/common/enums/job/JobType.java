@@ -1,4 +1,4 @@
-package dev.hieplp.spring.scheduler.common.enums.file;
+package dev.hieplp.spring.scheduler.common.enums.job;
 
 import dev.hieplp.spring.scheduler.job.AutowiredJob;
 import dev.hieplp.spring.scheduler.job.SimpleJob;

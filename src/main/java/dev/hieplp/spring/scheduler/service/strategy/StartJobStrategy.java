@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class StartJobStrategy extends AbstractJobInteractionStrategy {
     @Override
-    protected void interaction(JobKey jobKey) throws SchedulerException {
+    protected void interact(JobKey jobKey) throws SchedulerException {
         log.debug("Start job with jobKey: {}", jobKey);
         checkJobExists(jobKey);
         scheduler.triggerJob(jobKey);

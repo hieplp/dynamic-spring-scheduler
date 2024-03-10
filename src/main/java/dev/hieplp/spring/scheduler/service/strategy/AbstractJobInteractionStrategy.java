@@ -16,7 +16,7 @@ public abstract class AbstractJobInteractionStrategy {
     public JobKey interact(InteractJobRequest request) {
         try {
             final var jobKey = getJobKey(request);
-            interaction(jobKey);
+            interact(jobKey);
             return jobKey;
         } catch (NotFoundException e) {
             throw e;
@@ -25,7 +25,7 @@ public abstract class AbstractJobInteractionStrategy {
         }
     }
 
-    protected abstract void interaction(JobKey jobKey) throws SchedulerException;
+    protected abstract void interact(JobKey jobKey) throws SchedulerException;
 
     protected JobKey getJobKey(InteractJobRequest request) {
         return JobKey.jobKey(request.getName(), request.getGroup());

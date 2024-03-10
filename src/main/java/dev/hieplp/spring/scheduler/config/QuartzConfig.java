@@ -12,14 +12,6 @@ import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 
 @Configuration
 public class QuartzConfig {
-//    @Bean
-//    public Scheduler scheduler() throws SchedulerException {
-//        final var schedulerFactory = new StdSchedulerFactory();
-//        final var scheduler = schedulerFactory.getScheduler();
-//        scheduler.start();
-//        return scheduler;
-//    }
-
 
     @Bean
     public SchedulerFactoryBean schedulerFactory(ApplicationContext applicationContext) {
@@ -49,6 +41,5 @@ public class QuartzConfig {
             beanFactory.autowireBean(job);
             return job;
         }
-
     }
 }

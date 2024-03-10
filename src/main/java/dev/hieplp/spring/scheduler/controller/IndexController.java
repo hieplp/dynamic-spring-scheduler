@@ -1,7 +1,7 @@
 package dev.hieplp.spring.scheduler.controller;
 
 import dev.hieplp.spring.scheduler.common.enums.PageEnum;
-import dev.hieplp.spring.scheduler.common.enums.file.JobType;
+import dev.hieplp.spring.scheduler.common.enums.job.JobType;
 import dev.hieplp.spring.scheduler.common.payload.request.job.CreateJobRequest;
 import dev.hieplp.spring.scheduler.common.payload.request.job.InteractJobRequest;
 import dev.hieplp.spring.scheduler.common.payload.request.job.UpdateJobRequest;
